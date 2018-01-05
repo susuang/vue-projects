@@ -56,7 +56,7 @@ var resolve = {
         PATHS.node_modulesPath
     ],
 
-    alias: { 'vue': 'vue/dist/vue.js' },
+    alias: { 'vue$': 'vue/dist/vue.js' },
 }
 
 /*

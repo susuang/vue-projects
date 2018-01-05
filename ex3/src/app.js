@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 const goods = { template: '<p>goods</p>' };
 const ratings = { template: '<p>ratings</p>' };
 const seller = { template: '<p>seller</p>' };
+Vue.use(VueRouter);
 // 然后定义路由(routes)，components还可以是Vue.extend()创建的
 const routes = [
   { path: '/goods', component: goods },
