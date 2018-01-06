@@ -1,17 +1,14 @@
 <template>
-    <div>
-        <h1>About me</h1>
-        <br>
-        <h2>{{msg}}</h2>
-    </div>
+    <Header title='第一个header组件'></Header> 
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                msg: 'I am a full stack developer!'
-            }
-        }
+// 导入组件
+import Header from '../components/header.vue'
+
+export default {
+    components: {
+        Header
     }
+} 
 </script>

@@ -46,7 +46,7 @@ var resolve = {
      * An array of extensions that should be used to resolve modules
      * （引用时可以忽略后缀）
      * */
-    extensions: ['.js', '.css', '.scss', '.ejs', '.png', '.jpg'],
+    extensions: ['.js', '.css', '.scss', '.ejs', '.png', '.jpg', '.vue'],
 
 
     /*
@@ -88,7 +88,7 @@ const output = {
 const loaders = [
     {
         test: /\.vue$/,
-        loader: 'vue',
+        loader: 'vue-loader',
         options: {
             loaders: {
                 scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
