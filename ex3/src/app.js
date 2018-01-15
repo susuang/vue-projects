@@ -1,26 +1,28 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Constant from 'constant';
 
-import Page1 from './page/page1.vue';
+//全局组件
+import AppLayout from './components/layout.vue';
 // 首先定义或者引入路由的组件
-// 方法一：直接定义路由组件
-
-const goods = { template: '<p>goods</p>' };
-const ratings = { template: '<p>ratings</p>' };
-const seller = { template: '<p>seller</p>' };
+import Routes from './js/router.js';
 Vue.use(VueRouter);
-// 然后定义路由(routes)，components还可以是Vue.extend()创建的
-const routes = [
-  { path: '/Page1', component: Page1 },
-  { path: '/ratings', component: ratings },
-  { path: '/seller', component: seller }
-];
+Vue.component('app-layout', AppLayout);
 // 接着创建路由实例
 const router = new VueRouter({
   // ES6缩写语法，相当于routes:routes
-  routes  
+  routes:Routes  
 });
 // 或者
 const app = new Vue({
   router
 }).$mount('#app')
+
+router.beforeEach((to, from, next)=> {
+    if(!Constant.isLogin){//未登入
+        next({ path: '/' });
+        console.info('请登入');
+    }else{
+        next();
+    }
+})

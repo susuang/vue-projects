@@ -56,7 +56,10 @@ var resolve = {
         PATHS.node_modulesPath
     ],
 
-    alias: { 'vue$': 'vue/dist/vue.js' },
+    alias: { 
+        'vue$': 'vue/dist/vue.js',
+        constant: path.join(PATHS.srcPath, "js/constant") 
+    },
 }
 
 /*
@@ -91,16 +94,32 @@ const loaders = [
         loader: 'vue-loader',
         options: {
             loaders: {
-                scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
-                sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+                scss: ExtractTextPlugin.extract({
+                    use: ['css-loader', 'sass-loader', {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: './libs/scss/*.scss'
+                        },
+                    }],
+                    fallback: 'vue-style-loader' // <style lang="scss">
+                }),
+                sass: ExtractTextPlugin.extract({
+                    use: 'css-loader!sass-loader?indentedSyntax',
+                    fallback: 'vue-style-loader' // <style lang="sass">
+                })
             }
         }
     },{
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
-          publicPath:'../'
+            fallback: 'style-loader',
+            use: ['css-loader', 'sass-loader', {
+                loader: 'sass-resources-loader',
+                options: {
+                    resources: ['./libs/scss/vars.scss']
+                },
+            },],
+            publicPath:'../'
         })
     }
 ];
@@ -141,7 +160,7 @@ var plugins = [
      */
     new ExtractTextPlugin({
         filename: () => {
-            return devServer ? "css/[name].css" : "css/[name]-[chunkhash:8].css";
+            return devServer ? "css/style.css" : "css/style-[chunkhash:8].css";
         }, 
         allChunks: true
     }),
