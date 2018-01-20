@@ -9,6 +9,7 @@
                 <span><input type="password" placeholder="Password:" name="password" v-model="password"></span>
                 <button type="button" class="button btnBlock-blue" @click="login">登录</button>
                 <button @click="openLoading()">loading</button>
+                <button @click="openMessage()">message</button>
                 <div id="info">{{loginTip}}</div>
             </div>
         </div>
@@ -32,15 +33,20 @@ export default {
             }
         },
         openLoading(){
-        this.$loading.open('loading...');
-        let self = this;
-        setTimeout(function () {
-          self.closeLoading()
-        }, 2000)
-      },
-      closeLoading(){
-        this.$loading.close();
-      }
+            this.$loading.open('loading...');
+            let self = this;
+            setTimeout(function () {
+              self.closeLoading()
+            }, 2000)
+        },
+        closeLoading(){
+            this.$loading.close();
+        },
+        openMessage(){
+            this.$message.error({
+                msg: 'message.....'
+            });
+        },
     }
 } 
 </script>

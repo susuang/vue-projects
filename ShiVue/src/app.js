@@ -4,18 +4,21 @@ import Constant from 'constant';
 
 //全局组件
 import AppLayout from './components/layout.vue';
-import Pop from './components/Prompts/index';
+import Prp from './components/Prompts/index';//提示信息
+
 // 首先定义或者引入路由的组件
 import Routes from './js/router.js';
+
 Vue.use(VueRouter);
-Vue.use(Pop);
+Vue.use(Prp);
 Vue.component('app-layout', AppLayout);
+
 // 接着创建路由实例
 const router = new VueRouter({
   // ES6缩写语法，相当于routes:routes
   routes:Routes  
 });
-// 或者
+
 const app = new Vue({
   router
 }).$mount('#app')
