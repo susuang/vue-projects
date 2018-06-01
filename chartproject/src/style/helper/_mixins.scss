@@ -1,0 +1,20 @@
+/*** mixins ***/
+/**
+ * 设置padding：0 margin:0
+ **/
+@mixin in-distance-out {
+    padding:0;
+    margin: 0;
+}
+/**
+ * 媒体查询
+ */
+@mixin screen($res-min, $res-max){
+    @media screen and (min-width:$res-min) and (max-width:$res-max){
+        @content;
+    }
+}
+/*** % ***/
+%in-distance-out {
+    @include in-distance-out;
+}

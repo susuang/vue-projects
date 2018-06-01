@@ -1,10 +1,16 @@
 <template>
- <div class="login">123</div>
+ <div class="login">
+ 	<cell></cell>
+ </div>
 </template>
 
 <script>
+import Cell from 'components/cell/cell'
 export default {
   name: 'login',
+  components: {
+    Cell
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

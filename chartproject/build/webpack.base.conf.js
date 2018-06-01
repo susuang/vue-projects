@@ -22,10 +22,11 @@ const webpackConfig = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', 'less'],
+    extensions: ['.js', '.vue', '.json', 'less', '.scss'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'components': resolve('src/components'),
     }
   },
   module: {
@@ -34,6 +35,10 @@ const webpackConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.scss/,
+        loader: 'css!sass-loader',
       },
       {
         test: /\.js$/,
